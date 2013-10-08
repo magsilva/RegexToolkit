@@ -42,6 +42,9 @@ Here is a very brief overview of some of the useful main classes:
 
 There is some other useful stuff if you poke around a bit.
 
+The code is free software, distributed under the terms of the
+[MIT license](http://opensource.org/licenses/MIT).
+
 Feel free to email me if you have any feedback, and I hope you find this
 stuff useful!
 
