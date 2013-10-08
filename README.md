@@ -2,9 +2,8 @@ This is a Java library for regular expressions and finite automata.
 
 It started out as an attempt to write a Java clone of RegeXeX:
 
-	http://sourceforge.net/projects/regexex/
-
-	http://dl.acm.org/citation.cfm?doid=1227310.1227462
+	| http://sourceforge.net/projects/regexex/
+	| http://dl.acm.org/citation.cfm?doid=1227310.1227462
 
 I got as far as parsing regular expressions, converting them to finite
 automata, and checking their equivalence: this is pretty useful for
