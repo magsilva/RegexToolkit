@@ -35,6 +35,7 @@ java -jar regexToolkit.jar command
 
 where `command` is one of the following commands:
 
+* `help`: Prints a usage summary.
 * `check`: Allows the user to enter a regular expression
   and example strings.  For each string, prints **ACCEPT** or
   **REJECT** depending on whether it is or isn't in the language
