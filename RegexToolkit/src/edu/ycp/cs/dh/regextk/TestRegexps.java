@@ -54,6 +54,15 @@ public class TestRegexps {
 			if (s == null || s.trim().toLowerCase().equals("quit")) {
 				done = true;
 			} else {
+				s = s.trim();
+				
+				// If the user entered a literal ε, convert it to the empty string
+				// and print a warning
+				if (s.equals("ε")) {
+					System.out.println("You entered ε, treating it as the empty string");
+					s = "";
+				}
+				
 				// Execute the DFA!
 				ExecuteDFA exec = new ExecuteDFA();
 				exec.setAutomaton(dfa);

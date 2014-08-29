@@ -45,20 +45,26 @@ public class ExecuteDFA implements ExecuteFiniteAutomaton {
 		// is reachable by following a transition on possible input symbols
 		
 		// find minimum and maximum character code used
-		minCC = 65536;
-		int maxCC = 0;
+		int rangeSize;
 		Set<Character> alphabet = FiniteAutomatonUtil.getAlphabet(fa);
-		for (char c : alphabet) {
-			if (c < minCC) {
-				minCC = c;
+		if (alphabet.isEmpty()) {
+			// Special case: the automaton only accepts the empty string
+			rangeSize = 0;
+		} else {
+			// find out the range of character codes used
+			minCC = 65536;
+			int maxCC = 0;
+			for (char c : alphabet) {
+				if (c < minCC) {
+					minCC = c;
+				}
+				if (c > maxCC) {
+					maxCC = c;
+				}
+
 			}
-			if (c > maxCC) {
-				maxCC = c;
-			}
+			rangeSize = (maxCC+1) - minCC;
 		}
-		
-		// find out the range of character codes used
-		int rangeSize = (maxCC+1) - minCC;
 		
 		// create the table and initialize it so that there are no valid transitions
 		table = new int[fa.getNumStates()][rangeSize];
