@@ -1,5 +1,5 @@
 // RegexToolkit - A Java library for regular expressions and finite automata
-// Copyright (C) 2013, David H. Hovemeyer <david.hovemeyer@gmail.com>
+// Copyright (C) 2013,2014 David H. Hovemeyer <david.hovemeyer@gmail.com>
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -87,6 +87,18 @@ public class ExecuteDFA implements ExecuteFiniteAutomaton {
 	
 	@Override
 	public Answer execute(String s) {
+		try {
+			return doExecute(s);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			// This can happen if a symbol not in the language's
+			// predicted alphabet is used.
+			return Answer.REJECT;
+		}
+	}
+
+	// Execute "unsafely" by not checking whether symbols in the
+	// String are in the automaton's predicted alphabet.
+	public Answer doExecute(String s) {
 		int state = startState;
 		for (int i = 0; i < s.length(); i++) {
 			char c = s.charAt(i);

@@ -1,5 +1,5 @@
 // RegexToolkit - A Java library for regular expressions and finite automata
-// Copyright (C) 2013, David H. Hovemeyer <david.hovemeyer@gmail.com>
+// Copyright (C) 2013,2014 David H. Hovemeyer <david.hovemeyer@gmail.com>
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -22,14 +22,20 @@
 
 package edu.ycp.cs.dh.regextk;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * Interactively test strings against a regular expression.
+ * 
+ * @author David Hovemeyer
+ */
 public class TestRegexps {
 	public static void main(String[] args) {
 		Scanner keyboard = new Scanner(System.in);
 		
 		System.out.print("Enter a regular expression (use 'e' for epsilon): ");
-		String regexp = keyboard.nextLine();
+		String regexp = readLine(keyboard);
 		
 		// Convert regexp to NFA
 		ConvertRegexpToNFA re2nfa = new ConvertRegexpToNFA(regexp);
@@ -44,7 +50,7 @@ public class TestRegexps {
 		System.out.println("Enter strings (type 'quit' when done)");
 		boolean done = false;
 		while (!done) {
-			String s = keyboard.nextLine();
+			String s = readLine(keyboard);
 			if (s == null || s.trim().toLowerCase().equals("quit")) {
 				done = true;
 			} else {
@@ -54,6 +60,14 @@ public class TestRegexps {
 				Answer ans = exec.execute(s);
 				System.out.println(ans);
 			}
+		}
+	}
+
+	public static String readLine(Scanner keyboard) {
+		try {
+			return keyboard.nextLine();
+		} catch (NoSuchElementException e) {
+			return null;
 		}
 	}
 }
