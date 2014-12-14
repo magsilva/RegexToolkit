@@ -1,0 +1,5 @@
+Generating strings not in master regexp doesn't terminate
+(in batchequiv mode):
+
+  Master regexp: (b|c|a*b)*a*
+  Test regexp:   (a|b|bc|cc|ca|cb)*
