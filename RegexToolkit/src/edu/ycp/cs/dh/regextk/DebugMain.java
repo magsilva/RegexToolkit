@@ -38,7 +38,7 @@ public class DebugMain {
 	 * about the states and transitions in the initial NFA and the
 	 * converted DFA.
 	 */
-	private static final boolean DEBUG = false;
+	private static final boolean DEBUG = true;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));

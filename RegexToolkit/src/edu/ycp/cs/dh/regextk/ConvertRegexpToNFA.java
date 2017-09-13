@@ -76,7 +76,16 @@ public class ConvertRegexpToNFA {
 	 * @return the NFA which recognizes the language specified by the regular expression
 	 */
 	public FiniteAutomaton convertToNFA() {
-		return parseR();
+		FiniteAutomaton fa = parseR();
+		
+		// Make sure that the entire regular expression was parsed.
+		// This avoids situations, e.g., such as "a)*" being treated
+		// as "a".
+		if (!regexp.substring(pos).trim().isEmpty()) {
+			throw new IllegalArgumentException("Regular expression had trailing symbols (mismatched parens?)");
+		}
+		
+		return fa;
 	}
 
 	// Note: all intermediate NFAs are guaranteed to have a single start state
