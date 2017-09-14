@@ -163,6 +163,15 @@ public class ImportJFLAP {
 	public boolean hasFeature(int feature) {
 		return (features & feature) != 0;
 	}
+
+	/**
+	 * Determine whether the imported automaton has any features.
+	 * @return true if the imported automaton has at least one feature,
+	 *         false otherwise
+	 */
+	public boolean anyFeatures() {
+		return features != 0;
+	}
 	
 	private static Element findSingleChild(Element elt, String tagName) throws IOException {
 		NodeList children = elt.getElementsByTagName(tagName);

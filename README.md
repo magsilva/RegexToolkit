@@ -21,6 +21,9 @@ aren't, and strings that shouldn't be generated but are.
 Unlike RegeXeX, there is no GUI, but I might get around to adding one
 at some point.
 
+*Update*: As of 14-Sep-2017, there is support for reading finite
+automate from [JFLAP](http://www.jflap.org/) files.
+
 ## Building it
 
 There is an Ant build file (**build.xml**).  Run the command `ant jar` to build **regexToolkit.jar**.
