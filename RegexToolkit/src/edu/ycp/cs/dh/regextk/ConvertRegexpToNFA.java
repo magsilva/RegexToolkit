@@ -196,9 +196,28 @@ public class ConvertRegexpToNFA {
 			return check(result);
 		} else if (c >= 0 && c == '?') {
 			expect('?');
+			/*
 			// This is easy: just create an epsilon transision from
 			// the start state to the accepting state.
 			f.createTransition(f.getStartState(), f.getUniqueAcceptingState(), FiniteAutomaton.EPSILON);
+			*/
+			
+			// For some reason I haven't figured out, the code above doesn't
+			// work, and generates an incorrect automaton.  The workaround
+			// below seems to work (?)
+			State start = f.getStartState();
+			State accept = f.getUniqueAcceptingState();
+			State newStart = f.createState();
+			State newAccept = f.createState();
+			f.createTransition(newStart, start, FiniteAutomaton.EPSILON);
+			f.createTransition(accept, newAccept, FiniteAutomaton.EPSILON);
+			start.setStart(false);
+			newStart.setStart(true);
+			accept.setAccepting(false);
+			newAccept.setAccepting(true);
+			// Allow a transition directly from the new start state to the new
+			// unique accepting state
+			f.createTransition(newStart, newAccept, FiniteAutomaton.EPSILON);
 		}
 		
 		return f;
