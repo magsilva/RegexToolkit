@@ -1,5 +1,5 @@
 // RegexToolkit - A Java library for regular expressions and finite automata
-// Copyright (C) 2013,2014 David H. Hovemeyer <david.hovemeyer@gmail.com>
+// Copyright (C) 2013,2014,2017 David H. Hovemeyer <david.hovemeyer@gmail.com>
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -72,6 +72,7 @@ public class Main {
 		System.out.println("  equiv      - enter two regexps, determine if they're equivalent ");
 		System.out.println("  batchequiv - like equiv, but for multiple regexps");
 		System.out.println("  grade      - grade regexps");
-		System.out.println("  gradefa    - grade finite JFLAP automaton");
+		System.out.println("  debug      - run debug main");
+		System.out.println("  gradefa    - grade JFLAP finite automaton");
 	}
 }
