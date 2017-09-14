@@ -42,7 +42,21 @@ import org.xml.sax.SAXException;
  * Import a finite automaton from a JFLAP file.
  */
 public class ImportJFLAP {
+	/**
+	 * Feature which is set if the imported automaton has
+	 * any transitions with multiple input symbols (an abomination
+	 * allowed by JFLAP.)
+	 */
+	public static int HAS_TRANSITION_WITH_MULTIPLE_SYMBOLS = 1;
+	
+	/**
+	 * Feature which is set if the imported automaton is
+	 * nondeterministic.
+	 */
+	public static int IS_NONDETERMINISTIC = 2;
+	
 	private InputStream in;
+	private int features;
 	
 	/**
 	 * Constructor.
@@ -50,6 +64,7 @@ public class ImportJFLAP {
 	 */
 	public ImportJFLAP(InputStream in) {
 		this.in = in;
+		this.features = 0;
 	}
 	
 	/**
@@ -128,10 +143,25 @@ public class ImportJFLAP {
 					last = hidden;
 				}
 				result.createTransition(last, toState, sym.charAt(sym.length() - 1));
+				
+				features |= HAS_TRANSITION_WITH_MULTIPLE_SYMBOLS;
 			}
 		}
 		
+		if (!FiniteAutomatonUtil.isDeterministic(result)) {
+			features |= IS_NONDETERMINISTIC;
+		}
+		
 		return result;
+	}
+	
+	/**
+	 * Check whether the imported automaton has a particular feature.
+	 * @param feature the feature to check
+	 * @return true if the automaton has the feature, false otherwise
+	 */
+	public boolean hasFeature(int feature) {
+		return (features & feature) != 0;
 	}
 	
 	private static Element findSingleChild(Element elt, String tagName) throws IOException {
