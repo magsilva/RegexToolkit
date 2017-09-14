@@ -22,7 +22,9 @@ Unlike RegeXeX, there is no GUI, but I might get around to adding one
 at some point.
 
 *Update*: As of 14-Sep-2017, there is support for reading finite
-automata from [JFLAP](http://www.jflap.org/) files.
+automata from [JFLAP](http://www.jflap.org/) files, and the `gradefa`
+command can be used to check a student's finite automaton against
+a solution.
 
 ## Building it
 
@@ -59,6 +61,11 @@ where `command` is one of the following commands:
   in the generated languages.  This is nice for grading
   an entire assignment (consisting of multiple regular expression
   problems.)
+* `gradefa`: Takes a student finite automaton and a solution finite
+  automaton (both read from [JFLAP](http://www.jflap.org/) files)
+  and determines whether or not they are equivalent.  Prints
+  examples of incorrectly accepted or rejected strings in the case
+  the student's automaton is not equivalent to the solution.
 
 There is some other useful stuff if you poke around a bit.
 
