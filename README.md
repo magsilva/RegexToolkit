@@ -22,7 +22,7 @@ Unlike RegeXeX, there is no GUI, but I might get around to adding one
 at some point.
 
 *Update*: As of 14-Sep-2017, there is support for reading finite
-automate from [JFLAP](http://www.jflap.org/) files.
+automata from [JFLAP](http://www.jflap.org/) files.
 
 ## Building it
 
