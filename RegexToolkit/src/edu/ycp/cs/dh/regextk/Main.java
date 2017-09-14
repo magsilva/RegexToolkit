@@ -22,7 +22,6 @@
 
 package edu.ycp.cs.dh.regextk;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,7 +33,7 @@ import java.util.Map;
  */
 public class Main {
 	public interface Runner {
-		public void exec(String[] args) throws IOException;
+		public void exec(String[] args) throws Exception;
 	}
 	
 	private static Map<String, Runner> runnerMap = new HashMap<String, Main.Runner>();
@@ -43,11 +42,12 @@ public class Main {
 		runnerMap.put("check", new Runner() { public void exec(String[] args) { TestRegexps.main(args);} });
 		runnerMap.put("equiv", new Runner() { public void exec(String[] args) { DetermineEquivalenceOfRegexps.main(args);} });
 		runnerMap.put("batchequiv", new Runner() { public void exec(String[] args) { DetermineEquivalenceOfRegexpsBatch.main(args);} });
-		runnerMap.put("grade", new Runner() { public void exec(String[] args) throws IOException { GradeRegexps.main(args);} });
-		runnerMap.put("debug", new Runner() { public void exec(String[] args) throws IOException { DebugMain.main(args);} });
+		runnerMap.put("grade", new Runner() { public void exec(String[] args) throws Exception { GradeRegexps.main(args);} });
+		runnerMap.put("debug", new Runner() { public void exec(String[] args) throws Exception { DebugMain.main(args);} });
+		runnerMap.put("gradefa", new Runner() { public void exec(String[] args) throws Exception { GradeFiniteAutomaton.main(args); } });
 	}
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		if (args.length == 0) {
 			printUsage();
 			System.exit(1);
@@ -72,5 +72,6 @@ public class Main {
 		System.out.println("  equiv      - enter two regexps, determine if they're equivalent ");
 		System.out.println("  batchequiv - like equiv, but for multiple regexps");
 		System.out.println("  grade      - grade regexps");
+		System.out.println("  gradefa    - grade finite JFLAP automaton");
 	}
 }
