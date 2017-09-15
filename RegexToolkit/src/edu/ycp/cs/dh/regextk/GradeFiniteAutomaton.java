@@ -44,15 +44,14 @@ public class GradeFiniteAutomaton {
 		try (FileInputStream in = new FileInputStream(studentFile)) {
 			ImportJFLAP im = new ImportJFLAP(in);
 			student = im.convert();
+			System.out.printf("Your automaton has %d state(s)\n", student.getNumStates());
 			if (im.hasFeature(ImportJFLAP.HAS_TRANSITION_WITH_MULTIPLE_SYMBOLS)) {
 				System.out.println("Your automaton has transition(s) consuming multiple symbols");
 			}
 			if (im.hasFeature(ImportJFLAP.IS_NONDETERMINISTIC)) {
 				System.out.println("Your automaton is nondeterministic");
 			}
-			if (im.anyFeatures()) {
-				System.out.println();
-			}
+			System.out.println();
 		}
 		
 		try (FileInputStream in = new FileInputStream(solutionFile)) {
