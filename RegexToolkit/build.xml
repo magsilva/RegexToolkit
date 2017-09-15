@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project basedir="." default="build" name="RegexToolkit">
+<project basedir="." default="all" name="RegexToolkit">
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.7"/>
@@ -7,6 +7,8 @@
     <path id="RegexToolkit.classpath">
         <pathelement location="bin"/>
     </path>
+    <target name="all" depends="jar,checkerJar,equivalenceCheckerJar">
+    </target>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
@@ -26,11 +28,25 @@
             <classpath refid="RegexToolkit.classpath"/>
         </javac>
     </target>
-	<target name="jar" depends="build">
-		<jar destfile="regexToolkit.jar" basedir="bin" includes="**">
-			<manifest>
-				<attribute name="Main-Class" value="edu.ycp.cs.dh.regextk.Main"/>
-			</manifest>
-		</jar>
-	</target>
+    <target name="jar" depends="build">
+        <jar destfile="regexToolkit.jar" basedir="bin" includes="**">
+            <manifest>
+                <attribute name="Main-Class" value="edu.ycp.cs.dh.regextk.Main"/>
+            </manifest>
+        </jar>
+    </target>
+    <target name="checkerJar" depends="build">
+        <jar destfile="regexChecker.jar" basedir="bin" includes="**">
+            <manifest>
+                <attribute name="Main-Class" value="edu.ycp.cs.dh.regextk.TestRegexps"/>
+            </manifest>
+        </jar>
+    </target>
+    <target name="equivalenceCheckerJar" depends="build">
+        <jar destfile="regexEquivalenceChecker.jar" basedir="bin" includes="**">
+            <manifest>
+                <attribute name="Main-Class" value="edu.ycp.cs.dh.regextk.DetermineEquivalenceOfRegexps"/>
+            </manifest>
+        </jar>
+    </target>
 </project>
