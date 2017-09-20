@@ -48,9 +48,7 @@ public class GradeFiniteAutomaton {
 			if (im.hasFeature(ImportJFLAP.HAS_TRANSITION_WITH_MULTIPLE_SYMBOLS)) {
 				System.out.println("Your automaton has transition(s) consuming multiple symbols");
 			}
-			if (im.hasFeature(ImportJFLAP.IS_NONDETERMINISTIC)) {
-				System.out.println("Your automaton is nondeterministic");
-			}
+			System.out.printf("Your automaton is %sdeterministic\n", im.hasFeature(ImportJFLAP.IS_NONDETERMINISTIC) ? "non" : "");
 			System.out.println();
 		}
 		
