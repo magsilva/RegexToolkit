@@ -47,14 +47,14 @@ public class DetermineEquivalenceOfRegexps {
 		FiniteAutomaton aMinusB = FiniteAutomatonUtil.difference(a, b);
 		if (FiniteAutomatonUtil.recognizesNonEmptyLanguage(aMinusB)) {
 			System.out.println(labelSecond + " does not generate some strings in " + labelFirst);
-			Util.printMembers(aMinusB, 4);
+			Util.printExamples(aMinusB, 4);
 			equivalent = false;
 		}
 		
 		FiniteAutomaton bMinusA = FiniteAutomatonUtil.difference(b, a);
 		if (FiniteAutomatonUtil.recognizesNonEmptyLanguage(bMinusA)) {
 			System.out.println(labelSecond + " generates some strings not in " + labelFirst);
-			Util.printMembers(bMinusA, 4);
+			Util.printExamples(bMinusA, 4);
 			equivalent = false;
 		}
 		

@@ -70,13 +70,13 @@ public class GradeFiniteAutomaton {
 		if (result.isUnder()) {
 			System.out.println("Your automaton rejects some strings in the language:");
 			FiniteAutomaton under = checker.getUnderproduced();
-			Util.printMembers(under, 4);
+			Util.printExamples(under, 4);
 		}
 		
 		if (result.isOver()) {
 			System.out.println("Your automaton accepts some strings not in the language:");
 			FiniteAutomaton over = checker.getOverproduced();
-			Util.printMembers(over, 4);
+			Util.printExamples(over, 4);
 		}
 	}
 }

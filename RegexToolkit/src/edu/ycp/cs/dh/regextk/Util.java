@@ -30,7 +30,7 @@ public class Util {
 	 * @param fa          the {@link FiniteAutomaton}
 	 * @param maxStrings  maximum number of strings to generate
 	 */
-	public static void printMembers(FiniteAutomaton fa, int maxStrings) {
+	public static void printExamples(FiniteAutomaton fa, int maxStrings) {
 		GenerateMembers gen = new GenerateMembers(fa);
 		gen.execute(maxStrings);
 		for (String s : gen.getResultList()) {
