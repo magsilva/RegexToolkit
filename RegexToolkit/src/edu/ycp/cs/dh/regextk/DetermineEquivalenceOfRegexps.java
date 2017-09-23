@@ -1,5 +1,5 @@
 // RegexToolkit - A Java library for regular expressions and finite automata
-// Copyright (C) 2013, David H. Hovemeyer <david.hovemeyer@gmail.com>
+// Copyright (C) 2013,2017 David H. Hovemeyer <david.hovemeyer@gmail.com>
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -26,6 +26,7 @@ import java.util.Scanner;
 
 public class DetermineEquivalenceOfRegexps {
 	public static void main(String[] args) {
+		@SuppressWarnings("resource")
 		Scanner keyboard = new Scanner(System.in);
 		
 		System.out.print("Regexp A: ");
@@ -46,30 +47,19 @@ public class DetermineEquivalenceOfRegexps {
 		FiniteAutomaton aMinusB = FiniteAutomatonUtil.difference(a, b);
 		if (FiniteAutomatonUtil.recognizesNonEmptyLanguage(aMinusB)) {
 			System.out.println(labelSecond + " does not generate some strings in " + labelFirst);
-			printMembers(aMinusB, 4);
+			Util.printMembers(aMinusB, 4);
 			equivalent = false;
 		}
 		
 		FiniteAutomaton bMinusA = FiniteAutomatonUtil.difference(b, a);
 		if (FiniteAutomatonUtil.recognizesNonEmptyLanguage(bMinusA)) {
 			System.out.println(labelSecond + " generates some strings not in " + labelFirst);
-			printMembers(bMinusA, 4);
+			Util.printMembers(bMinusA, 4);
 			equivalent = false;
 		}
 		
 		if (equivalent){
 			System.out.println("Equivalent!");
-		}
-	}
-
-	private static void printMembers(FiniteAutomaton fa, int maxStrings) {
-		GenerateMembers gen = new GenerateMembers(fa);
-		gen.execute(maxStrings);
-		for (String s : gen.getResultList()) {
-			if (s.equals("")) {
-				s = "" + FiniteAutomaton.EPSILON;
-			}
-			System.out.println("  " + s);
 		}
 	}
 }
