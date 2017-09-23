@@ -70,21 +70,13 @@ public class GradeFiniteAutomaton {
 		if (result.isUnder()) {
 			System.out.println("Your automaton rejects some strings in the language:");
 			FiniteAutomaton under = checker.getUnderproduced();
-			printExamples(under);
+			Util.printMembers(under, 4);
 		}
 		
 		if (result.isOver()) {
 			System.out.println("Your automaton accepts some strings not in the language:");
 			FiniteAutomaton over = checker.getOverproduced();
-			printExamples(over);
-		}
-	}
-	
-	private static void printExamples(FiniteAutomaton fa) {
-		GenerateMembers gen = new GenerateMembers(fa);
-		gen.execute(4);
-		for (String example : gen.getResultList()) {
-			System.out.println("  " + example);
+			Util.printMembers(over, 4);
 		}
 	}
 }
