@@ -1,5 +1,5 @@
 // RegexToolkit - A Java library for regular expressions and finite automata
-// Copyright (C) 2013,2014 David H. Hovemeyer <david.hovemeyer@gmail.com>
+// Copyright (C) 2013,2014,2017 David H. Hovemeyer <david.hovemeyer@gmail.com>
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -33,6 +33,7 @@ import java.util.Scanner;
  */
 public class DetermineEquivalenceOfRegexpsBatch {
 	public static void main(String[] args) {
+		@SuppressWarnings("resource")
 		Scanner keyboard = new Scanner(System.in);
 
 		System.out.print("Master regexp: ");
